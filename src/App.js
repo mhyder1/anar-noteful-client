@@ -8,10 +8,13 @@ import FolderMain from "./Component/Folder/FolderMain";
 import Sidebar from "./Component/Main/Sidebar";
 import NoteSidebar from "./Component/Note/NoteSidebar";
 import config from "./config.js";
-import AppContext from './AppContext'
+import AppContext from "./AppContext";
+import AddFolder from "./AddFolder";
+import backButton from "./backButton";
+import AddNote from "./AddNote";
 
 export default class App extends Component {
-  static contextType = AppContext
+  static contextType = AppContext;
 
   state = {
     folders: [],
@@ -37,83 +40,115 @@ export default class App extends Component {
       });
   }
 
+  //deleting from the client side
+  handleDelete = (noteId) => {
+    this.setState({
+      notes: this.state.notes.filter((note) => note.id !== noteId),
+    });
+  };
+
+  addFolder = (folder) => {
+    this.setState({
+      folders: [...this.state.folders, folder],
+    });
+  };
+
+  addNote = (note) => {
+    this.setState({
+      notes: [...this.state.notes, note],
+    });
+  };
+
   render() {
-    console.log(this.context)
-    const value= {
-      notes : this.state.notes,
-      folders : this.state.folders
-    }
+    console.log(this.context);
+    const value = {
+      notes: this.state.notes,
+      folders: this.state.folders,
+      handleDelete: this.handleDelete,
+      addFolder: this.addFolder,
+      addNote: this.addNote,
+    };
 
     return (
       <AppContext.Provider value={value}>
-      <>
-        <div className="App"></div>
-        <Switch>
-          <Route path="/" component={Header} />
-        </Switch>
-        <Switch>
+        <>
+          <div className="App"></div>
+          <Switch>
+            <Route path="/" component={Header} />
+          </Switch>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={Sidebar}
+              // render={(props) => (
+              //   <Sidebar
+              //     {...props}
+              //     folders={this.state.folders}
+              //     notes={this.state.notes}
+              //   />
+              // )}
+            />
+          </Switch>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={Main}
+              //   render={(props) => (
+              //     <Main
+              //       {...props}
+              //       folders={this.state.folders}
+              //       notes={this.state.notes}
+              //     />
+              //   )}
+            />
+          </Switch>
+          <Route
+            path="/folder/:folderId"
+            component={Sidebar}
+            // render={(props) => (
+            //   <Sidebar {...props} folders={this.state.folders} />
+            // )}
+          />
+
           <Route
             exact
-            path="/" component ={Sidebar}
+            path="/folder/:folderId"
+            component={FolderMain}
             // render={(props) => (
-            //   <Sidebar
+            //   <FolderMain
+            //     {...props}
+            //     //folders={this.state.folders}
+            //     notes={this.state.notes}
+            //   />
+            // )}
+          />
+
+          <Route
+            exact
+            path="/note/:noteId"
+            component={NoteSidebar}
+            // render={(props) => (
+            //   <NoteSidebar
             //     {...props}
             //     folders={this.state.folders}
             //     notes={this.state.notes}
             //   />
             // )}
           />
-        </Switch>
-        <Switch>
+
           <Route
             exact
-            path="/" component={Main}
-          //   render={(props) => (
-          //     <Main
-          //       {...props}
-          //       folders={this.state.folders}
-          //       notes={this.state.notes}
-          //     />
-          //   )}
+            path="/note/:noteId"
+            component={Note}
+            // render={(props) => <Note {...props} notes={this.state.notes} />}
           />
-        </Switch>
-        <Route
-          path="/folder/:folderId"
-          render={(props) => (
-            <Sidebar {...props} folders={this.state.folders} />
-          )}
-        />
-
-        <Route
-          exact
-          path="/folder/:folderId"
-          render={(props) => (
-            <FolderMain
-              {...props}
-              //folders={this.state.folders}
-              notes={this.state.notes}
-            />
-          )}
-        />
-
-        <Route
-          exact
-          path="/note/:noteId"
-          render={(props) => (
-            <NoteSidebar
-              {...props}
-              folders={this.state.folders}
-              notes={this.state.notes}
-            />
-          )}
-        />
-
-        <Route
-          exact
-          path="/note/:noteId"
-          render={(props) => <Note {...props} notes={this.state.notes} />}
-        />
-      </>
+          <Route exact path="/add-folder" component={backButton} />
+          <Route exact path="/add-folder" component={AddFolder} />
+          <Route exact path="/add-note" component={backButton} />
+          <Route exact path="/add-note" component={AddNote} />
+        </>
       </AppContext.Provider>
     );
   }

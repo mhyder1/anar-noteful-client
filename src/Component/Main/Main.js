@@ -1,13 +1,28 @@
 import React from "react";
 import "./Main.css";
-import AppContext from '../../AppContext'
+import AppContext from "../../AppContext";
+import config from "../../config";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { findByLabelText } from "@testing-library/react";
 
 export default class Main extends React.Component {
- static contextType = AppContext
+  static contextType = AppContext;
+
+  //keeping the front and back end in sync
+  handleDelete = (noteId) => {
+    //deleting from the backend
+    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    }).then(() => {
+      this.context.handleDelete(noteId);
+    });
+  };
 
   render() {
-    //console.log(this.props.folders);
     return (
       <>
         <div
@@ -24,23 +39,32 @@ export default class Main extends React.Component {
             }}
           >
             <ul>
-              {this.props.notes
-                ? this.props.notes.map((note) => (
+              {this.context.notes
+                ? this.context.notes.map((note) => (
                     <li
                       className="main-note-list"
                       key={note.id}
-                      style={{ fontSize: "12px", listStyle: "none" }}
+                      style={{ fontSize: "14px", listStyle: "none" }}
                     >
-                      {note.name}
+                      <NavLink to={`/note/${note.id}`}>{note.name}</NavLink>
                       <p>{note.modified}</p>
-                      <button>remove</button>
+                      <button
+                        style={{ fontSize: "10px" }}
+                        onClick={() => this.handleDelete(note.id)}
+                      >
+                        remove
+                      </button>
                     </li>
                   ))
                 : null}
             </ul>
           </div>
-          
         </div>
+        <button>
+          <Link style={{ textDecoration: "none" }} to={"/add-note"}>
+            Add note
+          </Link>
+        </button>
       </>
     );
   }
