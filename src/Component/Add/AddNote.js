@@ -7,7 +7,7 @@ export default class AddNote extends Component {
   state = {
     noteName: "",
     contName: "",
-    folderId: "",
+    folder_id: "",
   };
 
   handleInputChange = (e) => {
@@ -27,7 +27,7 @@ export default class AddNote extends Component {
       body: JSON.stringify({
         name: this.state.noteName,
         content: this.state.contName,
-        folderId: this.state.folderId,
+        folder_id: this.state.folderId,
         modified: new Date(),
       }),
     })

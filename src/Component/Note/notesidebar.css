@@ -2,10 +2,10 @@
     color: #b5b3b3;
     font-family: var(--custom-font);
     font-size: 30px;
-    height: 25vh;
+    height: 100vh;
     margin: 0;
     text-orientation: upright;
-    width: 55px;
+    /* width: 55px; */
     writing-mode: vertical-lr;
     background-color: #0b1b32 ;
 }
@@ -20,7 +20,7 @@ writing-mode: vertical-lr;} */
         background-color: #FFB72F;
       } */
 }
-.note {
+.note-details {
    
         background-color: #efefef;
         height: 100%;
@@ -29,6 +29,9 @@ writing-mode: vertical-lr;} */
   
  
         color: #3a3939;
-        max-width: 380px;
+        /* max-width: 380px; */
+        position: absolute;
+        top: 73px;
+        left: 200px;
 
 }

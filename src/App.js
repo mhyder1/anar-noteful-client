@@ -11,6 +11,7 @@ import AppContext from "./AppContext";
 import AddFolder from "./Component/Add/AddFolder";
 import backButton from "./backButton";
 import AddNote from "./Component/Add/AddNote";
+import NoteDetails from "./Component/Note/NoteDetails"
 
 export default class App extends Component {
   static contextType = AppContext;
@@ -59,7 +60,7 @@ export default class App extends Component {
   };
 
   render() {
-    console.log(this.context);
+    // console.log(this.context);
     const value = {
       notes: this.state.notes,
       folders: this.state.folders,
@@ -98,7 +99,7 @@ export default class App extends Component {
             <Route path="/folder/:folderId" component={Sidebar} />
             <Route exact path="/folder/:folderId" component={FolderMain} />
             <Route exact path="/note/:noteId" component={NoteSidebar} />
-            <Route exact path="/note/:noteId" component={Note} />
+            <Route exact path="/note/:noteId" component={NoteDetails} />
             <Route exact path="/add-folder" component={backButton} />
             <Route exact path="/add-folder" component={AddFolder} />
             <Route exact path="/add-note" component={backButton} />

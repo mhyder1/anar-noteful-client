@@ -11,11 +11,19 @@ export default class NoteSidebar extends Component {
 
   render() {
     const { noteId } = this.props.match.params;
-    const note = this.context.notes.find((note) => note.id === noteId);
+    console.log(this.context.notes)
+    const note = this.context.notes.find((note) => {
+      console.log(note.id, noteId)
+      return note.id === parseInt(noteId) // fix
+    });
+    console.log({note})
     const folder = note
-      ? this.context.folders.find((folder) => folder.id === note.folderId)
+      ? this.context.folders.find((folder) => {
+        // console.log(folder.id, note.folder_id)
+        return folder.id === note.folder_id
+      })
       : null;
-
+    console.log({folder})
     return (
       <>
         <div
