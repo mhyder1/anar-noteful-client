@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AppContext from "../../AppContext";
+import './notesidebar.css'
 
 export default class NoteSidebar extends Component {
   static contextType = AppContext;
@@ -18,23 +19,21 @@ export default class NoteSidebar extends Component {
     return (
       <>
         <div
-          className="NoteSidebar"
-          style={{
-            backgroundColor: "#D1f7C9",
-            width: "30%",
-            height: "40",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          className = "NoteSidebar"
+          // style={{
+          //   backgroundColor: "#D1f7C9",
+          //   width: "30%",
+          //   height: "40",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          // }}
         >
           {folder && <h2>{folder.name}</h2>}
-          <button onClick={() => this.handleClick(folder.id)} type="submit">
+          <button className='NoteSidebar_backbutton' onClick={() => this.handleClick(folder.id)} type="submit">
             back
           </button>
         </div>{" "}
       </>
     );
   }
-
-  //console.log(folder ? folder.name : "");
 }

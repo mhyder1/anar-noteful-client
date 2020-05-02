@@ -1,18 +1,19 @@
-import React, { Children } from "react";
-import { Link } from "react-router-dom";
-// import AppContext from './AppContext';
+import React from 'react'
 
 export default function backButton(props) {
-  
-
   return (
-    //   <AppContext.Consumer>
-    //       <>
-    //    {({folders})=> (
-    //        {folders.find((folder) => folder.id === folderId )}
-    //    )}
-    //    </>
-    // </AppContext.Consumer>
-    <button onClick={()=>props.history.push('/') }>Back</button>
+    <div
+      style={{
+        backgroundColor: "#0b1b32",
+        color: "#fff",
+        fontSize: "large",
+        gridArea: "sidebar",
+        height: "100vh",
+        overflow: "auto",
+        lineHeight: "2rem",
+      }}
+    >
+      <button onClick={() => props.history.push("/")}>Back</button>
+    </div>
   );
 }

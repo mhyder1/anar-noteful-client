@@ -27,17 +27,10 @@ export default class Main extends React.Component {
       <>
         <div
           className="conTainer"
-          style={{ display: "flex", flex: "1", flexDirection: "row" }}
+      
         >
           <div
-            className="main-notebox"
-            style={{
-              backgroundColor: "orange",
-              width: "50%",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+            className="main-notebox">
             <ul>
               {this.context.notes
                 ? this.context.notes.map((note) => (
@@ -46,7 +39,7 @@ export default class Main extends React.Component {
                       key={note.id}
                       style={{ fontSize: "14px", listStyle: "none" }}
                     >
-                      <NavLink to={`/note/${note.id}`}>{note.name}</NavLink>
+                      <NavLink className='notelink'to={`/note/${note.id}`}>{note.name}</NavLink>
                       <p>{note.modified}</p>
                       <button
                         style={{ fontSize: "10px" }}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
 import AppContext from "../../AppContext";
+import './FolderMain.css'
 
 export default class FolderMain extends Component {
   static contextType = AppContext;
@@ -13,25 +14,17 @@ export default class FolderMain extends Component {
     );
     return (
       <>
-        <div
-          className="FolderMain"
-          style={{
-            backgroundColor: "orange",
-            width: "50%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <div className="FolderMain">
           <ul>
             {notes
               ? notes.map((note) => (
                   <li key={note.id}>
-                    <NavLink
+                    <NavLink 
                       to={`/note/${note.id}`}
-                      style={{ textDecoration: "none" }}
+                      style={{ textDecoration: "none", color:"white", lineHeight:'2rem' }}
                     >
                       {note.name}
-                    </NavLink>{" "}
+                    </NavLink> {''}
                     <button
                       onClick={() => this.context.handleDelete(note.id)}
                       style={{ fontSize: "10px" }}

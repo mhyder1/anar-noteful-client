@@ -18,7 +18,7 @@
     overflow: auto;
   }
   
-  .App__header {
+  /* .App__header {
     background-color: #0b1f3a;
     color: #bdbdbd;
     font-family: var(--custom-font);
@@ -28,13 +28,15 @@
     text-shadow: 2px 1px 2px black;
   }
   
-  .App__header a {
+   .App__header a {
     color: #bdbdbd;
-  }
+  } */
   
   .App__main {
     background-color: #102541;
     grid-area: main;
     height: calc(100vh - 120px);
     overflow: auto;
-  }
+  } 
+
+   

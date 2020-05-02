@@ -18,9 +18,8 @@ export default class Note extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const noteId = this.props.match.params.noteId;
-    //console.log(noteId)
     const notes = this.context.notes.filter((note) => note.id === noteId);
     //this.handleDeleteNote = this.context.handleDelete;
     return (
@@ -28,10 +27,11 @@ export default class Note extends Component {
         <div
           className="note"
           style={{
-            backgroundColor: "orange",
-            width: "50%",
-            alignItems: "center",
-            justifyContent: "center",
+            backgroundColor: '#102541',
+            gridArea: 'main',
+            height: 'calc(100vh - 120px)',
+            overflow: 'auto',
+            color:'whitesmoke'
           }}
         >
           <ul>
@@ -52,4 +52,4 @@ export default class Note extends Component {
     );
   }
 }
-//
+

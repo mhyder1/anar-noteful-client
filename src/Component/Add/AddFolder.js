@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import AppContext from "./AppContext";
-import config from "./config";
+import AppContext from "../../AppContext";
+import config from "../../config";
 
 export default class AddFolder extends Component {
   static contextType = AppContext;
@@ -24,16 +24,15 @@ export default class AddFolder extends Component {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        'name': this.state.folderName
+        name: this.state.folderName,
       }),
     })
       .then((res) => {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
-        return res.json;
+        return res.json();
       })
 
       .then((folder) => {
-        // console.log(folder)
         this.context.addFolder(folder);
         this.props.history.push(`/folder/${folder.id}`);
       })
@@ -44,7 +43,16 @@ export default class AddFolder extends Component {
 
   render() {
     return (
-      <>
+      <div
+        style={{
+          backgroundColor: "#102541",
+          gridArea: "main",
+          height: "calc(100vh - 120px)",
+          overflow: "auto",
+          color: "whitesmoke",
+        }}
+        className="addfolder"
+      >
         <h2>Create a folder</h2>
         <form onSubmit={this.handleSubmit}>
           <label>Name</label> <br />
@@ -57,7 +65,7 @@ export default class AddFolder extends Component {
           <br />
           <input type="submit" value="Add Folder" />
         </form>
-      </>
+      </div>
     );
   }
 }
