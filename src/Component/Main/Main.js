@@ -23,6 +23,10 @@ export default class Main extends React.Component {
     });
   };
 
+  onDelete = () => {
+    this.props.history.push("/");
+  }
+
   render() {
     return (
       <>
@@ -31,7 +35,7 @@ export default class Main extends React.Component {
       
         >
         <button>
-          <Link style={{ textDecoration: "none" }} to={"/add-note"}>
+          <Link style={{ textDecoration: "none", color:'black' }} to={"/add-note"}>
             Add note
           </Link>
         </button>
@@ -45,21 +49,8 @@ export default class Main extends React.Component {
                     id={note.id}
                     modified={note.modified}
                     name={note.name}
+                    onDelete={this.onDelete}
                   />
-                    // <li
-                    //   className="main-note-list"
-                    //   key={note.id}
-                    //   style={{ fontSize: "14px", listStyle: "none" }}
-                    // >
-                    //   <NavLink className='notelink'to={`/note/${note.id}`}>{note.name}</NavLink>
-                    //   <p>{note.modified}</p>
-                    //   <button
-                    //     style={{ fontSize: "10px" }}
-                    //     onClick={() => this.handleDelete(note.id)}
-                    //   >
-                    //     Main remove
-                    //   </button>
-                    // </li>
                   ))
                 : null}
             </ul>

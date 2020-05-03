@@ -87,19 +87,24 @@ export default class App extends Component {
                   component={Sidebar}
                 />
               </Switch>
+              <Route path="/folder/:folderId" component={Sidebar} />
+              <Route exact path="/note/:noteId" component={NoteSidebar} />
+              <Route exact path="/add-note" component={backButton} />
+              <Route exact path="/add-folder" component={backButton} />
             </nav>
-          
-            <Switch>
-              <Route exact path="/" component={Main} />
-            </Switch>
-            <Route path="/folder/:folderId" component={Sidebar} />
-            <Route exact path="/folder/:folderId" component={FolderMain} />
-            <Route exact path="/note/:noteId" component={NoteSidebar} />
-            <Route exact path="/note/:noteId" component={NoteDetails} />
-            <Route exact path="/add-folder" component={backButton} />
-            <Route exact path="/add-folder" component={AddFolder} />
-            <Route exact path="/add-note" component={backButton} />
-            <Route exact path="/add-note" component={AddNote} />
+            <main className="App__main">
+              <Switch>
+                <Route exact path="/" component={Main} />
+              </Switch>
+              
+              <Route exact path="/folder/:folderId" component={FolderMain} />
+              
+              <Route exact path="/note/:noteId" component={NoteDetails} />
+              
+              <Route exact path="/add-folder" component={AddFolder} />
+              
+              <Route exact path="/add-note" component={AddNote} />
+            </main>
           </div>
         </>
       </AppContext.Provider>

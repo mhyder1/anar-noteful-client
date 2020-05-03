@@ -21,7 +21,7 @@ export default function Sidebar() {
           </ul>
 
           <button>
-            <Link style={{ textDecoration: "none" }} to={"/add-folder"}>
+            <Link style={{ textDecoration: "none",color:'black' }} to={"/add-folder"}>
               + folder
             </Link>
           </button>

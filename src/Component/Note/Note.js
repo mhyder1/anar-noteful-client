@@ -7,7 +7,6 @@ export default class Note extends Component {
   static contextType = AppContext;
 
   handleNote = (noteId) => {
-    console.log({noteId})
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: "DELETE",
       headers: {
@@ -35,7 +34,7 @@ export default class Note extends Component {
               <p>{content}</p>
             }
             <button
-              style={{ fontSize: "10px" }}
+              style={{ fontSize: "10px",marginBottom:'10px' }}
               onClick={() => this.handleNote(id)}
             >
               Remove

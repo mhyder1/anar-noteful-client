@@ -9,6 +9,11 @@
     grid-template-columns: 1fr 2.3fr;
     grid-template-rows: 120px 1fr;
     min-height: 100vh;
+    color: white;
+  }
+  
+  .App a, a:active, a:visited {
+    color: white;
   }
   
   .App__nav {
