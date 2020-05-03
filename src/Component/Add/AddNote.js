@@ -49,14 +49,14 @@ export default class AddNote extends Component {
     return (
       <>
         <div
-          style={{
-            backgroundColor: "#102541",
-            gridArea: "main",
-            height: "calc(100vh - 120px)",
-            overflow: "auto",
-            color: "whitesmoke",
-          }}
-          className="addnote"
+          // style={{
+          //   backgroundColor: "#102541",
+          //   gridArea: "main",
+          //   height: "calc(100vh - 120px)",
+          //   overflow: "auto",
+          //   color: "whitesmoke",
+          // }}
+          // className="addnote"
         >
           <h2>Create a note</h2>
           <form onSubmit={this.handleSubmit}>

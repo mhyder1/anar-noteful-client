@@ -11,31 +11,18 @@ export default class NoteSidebar extends Component {
 
   render() {
     const { noteId } = this.props.match.params;
-    console.log(this.context.notes)
     const note = this.context.notes.find((note) => {
-      console.log(note.id, noteId)
-      return note.id === parseInt(noteId) // fix
+      return note.id === parseInt(noteId)
     });
-    console.log({note})
     const folder = note
       ? this.context.folders.find((folder) => {
-        // console.log(folder.id, note.folder_id)
         return folder.id === note.folder_id
       })
       : null;
-    console.log({folder})
+
     return (
       <>
-        <div
-          className = "NoteSidebar"
-          // style={{
-          //   backgroundColor: "#D1f7C9",
-          //   width: "30%",
-          //   height: "40",
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          // }}
-        >
+        <div className = "NoteSidebar">
           {folder && <h2>{folder.name}</h2>}
           <button className='NoteSidebar_backbutton' onClick={() => this.handleClick(folder.id)} type="submit">
             back

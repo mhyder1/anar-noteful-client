@@ -27,9 +27,14 @@ export default class Main extends React.Component {
     return (
       <>
         <div
-          className="conTainer"
+          // className="conTainer"
       
         >
+        <button>
+          <Link style={{ textDecoration: "none" }} to={"/add-note"}>
+            Add note
+          </Link>
+        </button>
           <div
             className="main-notebox">
             <ul>
@@ -60,11 +65,6 @@ export default class Main extends React.Component {
             </ul>
           </div>
         </div>
-        <button>
-          <Link style={{ textDecoration: "none" }} to={"/add-note"}>
-            Add note
-          </Link>
-        </button>
       </>
     );
   }

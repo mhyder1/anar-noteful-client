@@ -18,6 +18,9 @@ export default class FolderMain extends Component {
     return (
       <>
         <div className="FolderMain">
+        <button>
+          <Link to={"/add-note"}>Add note</Link>
+        </button>
           <ul>
             {notes
               ? notes.map((note) => (
@@ -27,27 +30,10 @@ export default class FolderMain extends Component {
                     modified={note.modified}
                     name={note.name}
                   />
-                  // <li key={note.id}>
-                  //   <NavLink 
-                  //     to={`/note/${note.id}`}
-                  //     style={{ textDecoration: "none", color:"white", lineHeight:'2rem' }}
-                  //   >
-                  //     {note.name}
-                  //   </NavLink> {''}
-                  //   <button
-                  //     onClick={() => this.context.handleDelete(note.id)}
-                  //     style={{ fontSize: "10px" }}
-                  //   >
-                  //     filter remove
-                  //   </button>
-                  // </li>
                 ))
               : null}
           </ul>
         </div>
-        <button>
-          <Link to={"/add-note"}>Add note</Link>
-        </button>
       </>
     );
   }

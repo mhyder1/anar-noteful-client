@@ -12,6 +12,7 @@ import AddFolder from "./Component/Add/AddFolder";
 import backButton from "./backButton";
 import AddNote from "./Component/Add/AddNote";
 import NoteDetails from "./Component/Note/NoteDetails"
+import './App.css'
 
 export default class App extends Component {
   static contextType = AppContext;
@@ -73,25 +74,20 @@ export default class App extends Component {
       <AppContext.Provider value={value}>
         <>
           <div className="App">
-            <Switch>
-              <Route path="/" component={Header} />
-            </Switch>
-          
-            <Switch>
-              <Route
-                exact
-                path="/"
-                component={Sidebar}
-                // render={(props) => (
-                //   <Sidebar
-                //     {...props}
-                //     folders={this.state.folders}
-                //     notes={this.state.notes}
-                //   />
-                // )}
-              />
-              
-            </Switch>
+            <header className="App__header">
+              <Switch>
+                <Route path="/" component={Header} />
+              </Switch>
+            </header>
+            <nav className="App__nav">
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  component={Sidebar}
+                />
+              </Switch>
+            </nav>
           
             <Switch>
               <Route exact path="/" component={Main} />

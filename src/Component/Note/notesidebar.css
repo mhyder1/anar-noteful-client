@@ -21,17 +21,26 @@ writing-mode: vertical-lr;} */
       } */
 }
 .note-details {
-   
-        background-color: #efefef;
-        height: 100%;
-        padding: 10px;
-        width: 100%;
-  
- 
-        color: #3a3939;
-        /* max-width: 380px; */
-        position: absolute;
-        top: 73px;
-        left: 200px;
-
+  background-color: #efefef;
+  height: 100%;
+  padding: 10px;
+  width: 100%;
+  color: #3a3939;
+  /* max-width: 380px; */
+  position: absolute;
+  top: 73px;
+  left: 200px;
 }
+
+/* .note {
+  width: 30%;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  background-color: rgb(65, 150, 138);
+  padding: 5px;
+}
+
+@media screen and (max-width: 780px) {
+
+} */
