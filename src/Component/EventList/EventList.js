@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AppContext from "../Context/AppContext";
 import {Link} from 'react-router-dom'
+import { NiceDate } from '../Utils/Utils'
 import "./eventList.css";
 
 export default class EventList extends Component {
@@ -9,7 +10,7 @@ export default class EventList extends Component {
   render() {
     const type = this.props.match.url.split('/')[1]
     const { events } = this.context
-    console.log(events)
+    // console.log(events)
     const eventList = events.filter(event => event.type === type)
     
     return (
@@ -22,12 +23,25 @@ export default class EventList extends Component {
               <p className="bold">{event.parent_name}</p>
               <p className="bold">{event.title}</p>
               {/* <p>{event.time_of_event}</p> */}
+              <NiceDate
+                date={new Date(event.time_of_event)}
+              />
               <p className="bold">Description</p>
               <p>{event.description}</p>
               <p className="bold">Address</p>
               <p>{event.address}</p>
               <button>Join</button>{' '} 
-              <button><Link style={{textDecoration:'none', color:'black'}} to='/add-events'>Update</Link></button>
+              <button>
+                <Link 
+                  style={{textDecoration:'none', color:'black'}} 
+                  to={{
+                    pathname: '/update-events',
+                    state: {event}
+                  }}
+                >
+                  Update
+                </Link>
+              </button>
               <hr />
               <br/>
             </li>

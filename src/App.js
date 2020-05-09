@@ -10,6 +10,7 @@ import AddEvents from "./Component/AddEvents/AddEvents";
 import NavMenu from "./Component/NavMenu/NavMenu";
 import Confirm from "./Component/Confirm/Confirm";
 import EventList from "./Component/EventList/EventList";
+import UpdateEvents from "./Component/UpdateEvents/UpdateEvents"
 //import ArtsCrafts from './Component/navViews/arts-crafts';
 import config from './config.js';
 import "./App.css";
@@ -41,7 +42,7 @@ class App extends Component {
     })
     .then(([events, users]) => {
       this.setState({ events, users });
-      console.log(events)
+      // console.log(events)
     })
     .catch((error) => {
       console.log({ error })
@@ -82,6 +83,11 @@ class App extends Component {
             <section className="add-events">
               <Route path="/add-events" component={NavMenu} />
               <Route path="/add-events" component={AddEvents} />
+            </section>
+
+            <section className="update-events">
+              <Route path="/update-events" component={NavMenu} />
+              <Route path="/update-events" component={UpdateEvents} />
             </section>
 
             <section className="success">

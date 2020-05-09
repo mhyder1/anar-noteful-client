@@ -17,7 +17,23 @@ static contextType = AppContext
     description : '',
     address:'',
     type:'',
-    time_of_event: new Date()
+    time_of_event: new Date(),
+    id: null
+  }
+
+  componentDidMount() {
+    const { event } = this.props.location.state
+    this.setState({
+        parent_name: event.parent_name,
+        title: event.title,
+        description: event.description,
+        address: event.address,
+        type: event.type,
+        time_of_event: new Date(event.time_of_event),
+        id: event.id
+    })
+    // AlgoliaPlaces.setVal(event.address)
+    // console.log(AlgoliaPlaces.Places)
   }
 
   handleChange =(e) => {
@@ -48,8 +64,8 @@ static contextType = AppContext
 
   handleSubmit =(e)=> {
     e.preventDefault()
-    fetch(`${config.API_ENDPOINT}/events`,{
-      method:'POST',
+    fetch(`${config.API_ENDPOINT}/events/${this.state.id}`,{
+      method:'PATCH',
       headers: {
         "content-type": "application/json"
       },
@@ -109,7 +125,7 @@ static contextType = AppContext
             required />
           <br/>
           <label>Address</label><br/>
-          <AlgoliaPlaces
+          {/* <AlgoliaPlaces
             placeholder='Write an address here'
       
             options={{
@@ -139,16 +155,16 @@ static contextType = AppContext
       
             // onError={({ message }) => 
             //   console.log('Fired when we could not make the request to Algolia Places servers for any reason but reaching your rate limit.')}
-          />
+          /> */}
 
-          {/* <input onChange={(e) => this.handleChange(e)}
+          <input onChange={(e) => this.handleChange(e)}
             type="text" 
             name="address" 
             value={this.state.address} 
-            required />  */}
+            required /> 
             <br/>
           <label>Event type</label><br/>
-          <select name="type"
+          <select name="type" value={this.state.type}
                 onChange={(e) => this.handleChange(e)}>
                 <option>--</option>
                 <option value="arts-crafts">Arts & Crafts</option>
@@ -158,7 +174,7 @@ static contextType = AppContext
                 <option value="books-films">Books & Films</option>
                 <option value="tutoring">Tutoring</option>
               </select> <br/>
-          <input type="submit" value="add event" />
+          <input type="submit" value="update event" />
         </form>
       </>
     );

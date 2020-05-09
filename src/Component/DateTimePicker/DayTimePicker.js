@@ -6,7 +6,10 @@ export default class DayTimePicker extends Component {
     date: new Date(),
   }
  
-  onChange = date => this.setState({ date })
+  onChange = date => {
+    console.log(date)
+    this.setState({ date })
+  } 
  
   render() {
     return (
