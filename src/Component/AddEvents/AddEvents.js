@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import DateTimePicker from 'react-datetime-picker';
 import AlgoliaPlaces from 'algolia-places-react';
 import AppContext from '../Context/AppContext'
+import TokenService from '../../services/token-service'
 import config from '../../config'
 import '../../AlgoliaPlaces.css'
 
@@ -20,8 +21,12 @@ static contextType = AppContext
     time_of_event: new Date()
   }
 
+  componentDidMount() {
+    console.log(this.context)
+  }
+
   handleChange =(e) => {
-    console.log(e.target.name, e.target.value)
+    // console.log(e.target.name, e.target.value)
     this.setState({
       [e.target.name] : e.target.value,
     });
@@ -47,6 +52,7 @@ static contextType = AppContext
   }
 
   handleSubmit =(e)=> {
+    const token = TokenService.hasAuthToken() ? TokenService.readJwtToken() : {fullname:'',user_id:''}
     e.preventDefault()
     fetch(`${config.API_ENDPOINT}/events`,{
       method:'POST',
@@ -54,12 +60,13 @@ static contextType = AppContext
         "content-type": "application/json"
       },
       body: JSON.stringify({
-        parent_name: this.state.parent_name,
+        parent_name: token.fullname,
         title: this.state.title,
         description: this.state.description,
         address:this.state.address,
         type:this.state.type,
-        time_of_event: this.state.time_of_event
+        time_of_event: this.state.time_of_event,
+        author: token.user_id
       }),
     })
     .then((res)=> {
@@ -87,13 +94,13 @@ static contextType = AppContext
           value={this.state.time_of_event}
         />
           <br/>
-          <label>Parent name</label> <br/>
+          {/* <label>Parent name</label> <br/>
           <input onChange={(e) => this.handleChange(e)}
             type="text" 
             name="parent_name" 
             value={this.state.parent_name} 
             required />
-            <br/>
+            <br/> */}
           <label>Event title</label> <br/>
           <input onChange={(e) => this.handleChange(e)}
             type="text" 

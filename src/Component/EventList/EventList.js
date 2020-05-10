@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AppContext from "../Context/AppContext";
 import {Link} from 'react-router-dom'
 import { NiceDate } from '../Utils/Utils'
+import TokenService from '../../services/token-service'
 import "./eventList.css";
 
 export default class EventList extends Component {
@@ -9,8 +10,8 @@ export default class EventList extends Component {
 
   render() {
     const type = this.props.match.url.split('/')[1]
+    const token = TokenService.hasAuthToken() ? TokenService.readJwtToken() : {user_id:''}
     const { events } = this.context
-    // console.log(events)
     const eventList = events.filter(event => event.type === type)
     
     return (
@@ -31,6 +32,7 @@ export default class EventList extends Component {
               <p className="bold">Address</p>
               <p>{event.address}</p>
               <button>Join</button>{' '} 
+                {(event.author === token.user_id) &&
               <button>
                 <Link 
                   style={{textDecoration:'none', color:'black'}} 
@@ -42,6 +44,7 @@ export default class EventList extends Component {
                   Update
                 </Link>
               </button>
+                }
               <hr />
               <br/>
             </li>

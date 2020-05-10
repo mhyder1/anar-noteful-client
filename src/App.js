@@ -29,8 +29,12 @@ class App extends Component {
   state = {
     events: [],
     users:[],
-    hasError: false
+    hasError: false,
+    user_id: '',
+    fullname: ''
   };
+
+
 
   static getDerivedStateFromError(error) {
     console.error(error)
@@ -43,7 +47,22 @@ class App extends Component {
     });
   };
 
+  updateEvent = (ev) => {
+    const updatedEvents = this.state.events.filter(event => event.id !== ev.id)
+    this.setState({
+      events: [...updatedEvents, ev],
+    });
+  };
+
+  setUserId = (user_id, fullname) => {
+    this.setState({
+      user_id,
+      fullname
+    })
+  }
+
   componentDidMount() {
+
     Promise.all([
       fetch(`${config.API_ENDPOINT}/events`),
       fetch(`${config.API_ENDPOINT}/users`)
@@ -117,10 +136,12 @@ class App extends Component {
   }
 
   render() {
+
     const value = {
       events: this.state.events,
-      // users:this.state.users,
-      addEvent: this.addEvent
+      addEvent: this.addEvent,
+      setUserId: this.setUserId,
+      updateEvent: this.updateEvent
     };
 
     return (

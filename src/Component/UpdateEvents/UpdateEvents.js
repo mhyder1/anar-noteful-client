@@ -23,14 +23,15 @@ static contextType = AppContext
 
   componentDidMount() {
     const { event } = this.props.location.state
+    console.log(this.context)
     this.setState({
-        parent_name: event.parent_name,
+        // parent_name: event.parent_name,
         title: event.title,
         description: event.description,
         address: event.address,
         type: event.type,
         time_of_event: new Date(event.time_of_event),
-        id: event.id
+        id: event.id,
     })
     // AlgoliaPlaces.setVal(event.address)
     // console.log(AlgoliaPlaces.Places)
@@ -70,21 +71,21 @@ static contextType = AppContext
         "content-type": "application/json"
       },
       body: JSON.stringify({
-        parent_name: this.state.parent_name,
         title: this.state.title,
         description: this.state.description,
         address:this.state.address,
         type:this.state.type,
         time_of_event: this.state.time_of_event
-      }),
+      })
     })
     .then((res)=> {
       if(!res.ok) return res.json().then((e)=> Promise.reject(e));
       return res.json();
     })
     .then((event)=> {
-      this.context.addEvent(event)
-      this.props.history.push(`/events/${event.id}`);
+      this.context.updateEvent(event)
+      this.props.history.push(`/${event.type}`);
+      // this.props.history.push('/')
     })
     .catch((error) => {
       console.log({error});
@@ -103,13 +104,13 @@ static contextType = AppContext
           value={this.state.time_of_event}
         />
           <br/>
-          <label>Parent name</label> <br/>
+          {/* <label>Parent name</label> <br/>
           <input onChange={(e) => this.handleChange(e)}
             type="text" 
             name="parent_name" 
             value={this.state.parent_name} 
             required />
-            <br/>
+            <br/> */}
           <label>Event title</label> <br/>
           <input onChange={(e) => this.handleChange(e)}
             type="text" 

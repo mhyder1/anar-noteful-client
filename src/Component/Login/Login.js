@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AuthApiService from '../../services/auth-api-service'
 
+import AppContext from "../../Component/Context/AppContext";
+import TokenService from "../../services/token-service";
+
 export default class Login extends Component {
+    static contextType = AppContext
+
     state = {
         username: '',
         password: '',
@@ -35,6 +40,8 @@ export default class Login extends Component {
                 username: '',
                 password: ''
             })
+            const token = TokenService.readJwtToken()
+            this.context.setUserId(token.user_id, token.fullname)
             this.handleLoginSuccess()
           })
           .catch(res => {
@@ -44,7 +51,6 @@ export default class Login extends Component {
 
     render(){
         const{ error } = this.state
-        console.log(error)
         return(
             <>
             <h3>Log in</h3>
