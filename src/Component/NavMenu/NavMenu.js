@@ -26,6 +26,7 @@ export default class NavMenu extends Component {
           <Link className='links' to={'/sports-fitness'}>Sport & Fitnesss</Link>
           <Link className='links' to={"/books-films"}>Books & Films</Link>
           <Link className='links' to={"/tutoring"}>Tutoring</Link>
+          <Link className='my-events-link' to={"/my-events"}>📅</Link>
         </div>
       }
       </nav>

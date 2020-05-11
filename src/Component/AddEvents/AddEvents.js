@@ -75,7 +75,7 @@ static contextType = AppContext
     })
     .then((event)=> {
       this.context.addEvent(event)
-      this.props.history.push(`/events/${event.id}`);
+      this.props.history.push(`/${event.type}`);
     })
     .catch((error) => {
       console.log({error});

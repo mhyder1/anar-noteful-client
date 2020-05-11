@@ -12,6 +12,8 @@ import Confirm from "./Component/Confirm/Confirm";
 import EventList from "./Component/EventList/EventList";
 import UpdateEvents from "./Component/UpdateEvents/UpdateEvents"
 import Login from "./Component/Login/Login"
+import JoinEvent from "./Component/JoinEvent/JoinEvent"
+import MyEvents from "./Component/MyEvents/MyEvents"
 
 import PrivateRoute from './Component/Utils/PrivateRoute'
 import PublicOnlyRoute from './Component/Utils/PublicOnlyRoute'
@@ -29,6 +31,7 @@ class App extends Component {
   state = {
     events: [],
     users:[],
+    attend: [],
     hasError: false,
     user_id: '',
     fullname: ''
@@ -65,16 +68,17 @@ class App extends Component {
 
     Promise.all([
       fetch(`${config.API_ENDPOINT}/events`),
-      fetch(`${config.API_ENDPOINT}/users`)
+      fetch(`${config.API_ENDPOINT}/users`),
+      fetch(`${config.API_ENDPOINT}/attend`)
     ])
-    .then(([eventsRes, usersRes]) => {
+    .then(([eventsRes, usersRes, attendRes]) => {
       if (!eventsRes.ok) return eventsRes.json().then((e) => Promise.reject(e));
-      if (!usersRes.ok)
-        return usersRes.json().then((e) => Promise.reject(e));
-      return Promise.all([eventsRes.json(), usersRes.json()]);
+      if (!usersRes.ok) return usersRes.json().then((e) => Promise.reject(e));
+      if (!attendRes.ok) return attendRes.json().then((e) => Promise.reject(e));
+      return Promise.all([eventsRes.json(), usersRes.json(), attendRes.json()]);
     })
-    .then(([events, users]) => {
-      this.setState({ events, users });
+    .then(([events, users, attend]) => {
+      this.setState({ events, users, attend });
       // console.log(events)
     })
     .catch((error) => {
@@ -139,6 +143,7 @@ class App extends Component {
 
     const value = {
       events: this.state.events,
+      attend: this.state.attend,
       addEvent: this.addEvent,
       setUserId: this.setUserId,
       updateEvent: this.updateEvent
@@ -190,6 +195,11 @@ class App extends Component {
               <Route path="/update-events" component={UpdateEvents} />
             </section>
 
+            <section className="update-events">
+              <Route path="/join-event" component={NavMenu} />
+              <Route path="/join-event" component={JoinEvent} />
+            </section>
+
             <section className="success">
               <Route path="/success" component={NavMenu} />
               <Route path="/success" component={Confirm} />
@@ -214,6 +224,9 @@ class App extends Component {
 
               <PrivateRoute path="/tutoring" component={NavMenu} />
               <PrivateRoute path="/tutoring" component={EventList} />
+
+              <PrivateRoute path="/my-events" component={NavMenu} />
+              <PrivateRoute path="/my-events" component={MyEvents} />
             </section>
           </div>
         </>

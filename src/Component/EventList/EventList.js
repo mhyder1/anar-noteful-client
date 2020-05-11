@@ -18,7 +18,7 @@ export default class EventList extends Component {
       <>
         <button style={{backgroundColor:'green', color:'white'}}><Link style={{textDecoration:'none', color:'white'}} to='/add-events'>Create your event</Link></button>
         <h3>Current events</h3>
-        <ul>
+        <ul className="event-list">
           {eventList.map((event, id) => (
             <li key={id}>
               <p className="bold">{event.parent_name}</p>
@@ -31,20 +31,32 @@ export default class EventList extends Component {
               <p>{event.description}</p>
               <p className="bold">Address</p>
               <p>{event.address}</p>
-              <button>Join</button>{' '} 
-                {(event.author === token.user_id) &&
-              <button>
-                <Link 
-                  style={{textDecoration:'none', color:'black'}} 
-                  to={{
-                    pathname: '/update-events',
-                    state: {event}
-                  }}
-                >
-                  Update
-                </Link>
-              </button>
-                }
+              {(event.author !== token.user_id) &&
+                <button>
+                  <Link 
+                    style={{textDecoration:'none', color:'black'}} 
+                    to={{
+                      pathname: '/join-event',
+                      state: {event}
+                    }}
+                  >
+                    Join
+                  </Link>
+                </button>
+              }
+              {(event.author === token.user_id) &&
+                <button>
+                  <Link 
+                    style={{textDecoration:'none', color:'black'}} 
+                    to={{
+                      pathname: '/update-events',
+                      state: {event}
+                    }}
+                  >
+                    Update
+                  </Link>
+                </button>
+              }
               <hr />
               <br/>
             </li>
