@@ -206,8 +206,8 @@ class App extends Component {
               <PrivateRoute path="/outdoor-activities" component={NavMenu} />
               <PrivateRoute path="/outdoor-activities" component={EventList} />
 
-              <PrivateRoute path="/sport-fitness" component={NavMenu} />
-              <PrivateRoute path="/sport-fitness" component={EventList} />
+              <PrivateRoute path="/sports-fitness" component={NavMenu} />
+              <PrivateRoute path="/sports-fitness" component={EventList} />
 
               <PrivateRoute path="/books-films" component={NavMenu} />
               <PrivateRoute path="/books-films" component={EventList} />

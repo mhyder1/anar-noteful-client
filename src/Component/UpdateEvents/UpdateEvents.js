@@ -171,7 +171,7 @@ static contextType = AppContext
                 <option value="arts-crafts">Arts & Crafts</option>
                 <option value="music-dance">Music & Dance</option>
                 <option value="outdoor-activities">Outdoor activities</option>
-                <option value="sports-fitness">Sport & Fitness</option>
+                <option value="sports-fitness">Sports & Fitness</option>
                 <option value="books-films">Books & Films</option>
                 <option value="tutoring">Tutoring</option>
               </select> <br/>

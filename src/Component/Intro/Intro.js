@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import AppContext from "../../Component/Context/AppContext";
 import TokenService from "../../services/token-service"
 import { NiceDate } from '../Utils/Utils'
+import './Intro.css'
 
 export default class Intro extends Component {
   static contextType = AppContext
@@ -22,9 +23,9 @@ export default class Intro extends Component {
           more. Sign up and join a virtual village like no other!
         </p>
         <h3>Current events</h3>
-        <ul style={{display:'flex', flexWrap:'wrap', padding: '0',justifyContent: 'space-around'}}>
+        <ul className="intro">
           {events.map((event, id) => (
-            <li key={id} style={{width:"40%", border:'1px solid', borderRadius:'10px', marginBottom:'20px'}}>
+            <li key={id}>
               <p className="bold">{event.parent_name}</p>
               <p className="bold">{event.title}</p>
               <p>{event.time_of_event}</p>

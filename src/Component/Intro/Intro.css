@@ -1,0 +1,21 @@
+.intro {
+    display:flex;
+    flex-wrap: wrap;
+    padding: 0;
+    justify-content: space-around;
+}
+
+.intro > li {
+    width:100%; 
+    border:1px solid; 
+    border-radius:10px; 
+    margin-bottom:20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media screen and (min-width: 768px) {
+    .intro > li {
+        width:40%; 
+    }
+}

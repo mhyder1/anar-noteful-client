@@ -43,7 +43,12 @@ export default class Header extends Component {
     return (
       <>
         <nav>
-          <Link to='/'>PARENT <span>&#9900;</span> CONNECT</Link>
+            <Link to='/' 
+              style={{textDecoration:'none', borderBottom:'1px dashed purple'}}>
+              PARENT 
+              <span style={{fontSize: '40px', lineHeight: '.2', position: 'relative', margin:'0 5px', top: '5px'}}>&#8734;</span> 
+              CONNECT
+            </Link>
           {' '}
           <span style={{float:'right', marginRight:'50px'}}>
           {TokenService.hasAuthToken()
